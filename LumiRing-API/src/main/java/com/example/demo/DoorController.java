@@ -8,17 +8,14 @@ public class DoorController {
     private boolean doorRing = false;
 
     @PostMapping("/openDoor")
-    public String openDoor() {
+    public void ordenarAbrir() {
         doorOpened = true;
-        System.out.println("Door opened");
-        return "Door opened.\n";
     }
 
-    @GetMapping("openDoor")
-    public boolean getDoor() {
+    @GetMapping("/openDoor")
+    public synchronized boolean consultarAbrir() {
         if (doorOpened) {
-            doorOpened = false;
-        } else {
+            doorOpened = false; // reset automático
             return true;
         }
         return false;
