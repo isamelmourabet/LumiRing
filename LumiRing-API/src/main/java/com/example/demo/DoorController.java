@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class DoorController {
     private boolean doorOpened = false;
-    private boolean doorRing = false;
+    private volatile boolean doorRing = false;
 
     @PostMapping("/openDoor")
     public void ordenarAbrir() {
@@ -22,20 +22,20 @@ public class DoorController {
     }
 
     @PostMapping("/ring")
-    public String ringDoor() {
+    public void pulsarTimbre() {
         doorRing = true;
-        System.out.println("Someone is ringing this door");
-        return "Someone is ringing this door.\n";
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(5000); // 5 segundos
+            } catch (InterruptedException e) {}
+            doorRing = false;
+        }).start();
     }
 
     @GetMapping("/ring")
-    public boolean getRing() {
-        if (doorRing) {
-            doorRing = false;
-        } else {
-            return true;
-        }
-        return false;
+    public boolean consultarTimbre() {
+        return doorRing;
     }
 
     @GetMapping("/status")
