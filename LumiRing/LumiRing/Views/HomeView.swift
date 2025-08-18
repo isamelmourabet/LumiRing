@@ -17,10 +17,7 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 Color.blue.opacity(0.5)
-<<<<<<< HEAD
-                
-=======
->>>>>>> dev
+
                 VStack {
                     if !isConected {
                         Text("No se ha encontrado el dispositivo")
@@ -33,10 +30,6 @@ struct HomeView: View {
                     .buttonStyle(.borderedProminent)
                     .padding()
                     
-<<<<<<< HEAD
-                    
-=======
->>>>>>> dev
                     if isConected {
                         VStack  {
                             HStack {
@@ -91,10 +84,7 @@ struct HomeView: View {
                                                         isCalling = true
                                                     }
                                                 }
-<<<<<<< HEAD
-=======
-                                            //.offset(x: -10)
->>>>>>> dev
+
                                         }
                                         .padding()
                                     }
@@ -102,7 +92,6 @@ struct HomeView: View {
                                 } else {
                                     // Fallback on earlier versions
                                     HStack {
-<<<<<<< HEAD
                                         if isCalling {
                                             Image(systemName: "phone.down.fill")
                                                 .frame(width: 40, height: 40)
@@ -113,27 +102,17 @@ struct HomeView: View {
                                                         isCalling = false
                                                     }
                                                 }
-                                                
                                         }
-=======
-                                        Image(systemName: "phone.down.fill")
-                                            .frame(width: 40, height: 40)
-                                            .background(.secondary)
-                                            .clipShape(Circle())
->>>>>>> dev
                                         
                                         Image(systemName: "phone.fill")
                                             .frame(width: 40, height: 40)
                                             .background(.secondary)
                                             .clipShape(Circle())
-<<<<<<< HEAD
                                             .onTapGesture {
                                                 withAnimation() {
                                                     isCalling = true
                                                 }
                                             }
-=======
->>>>>>> dev
                                     }
                                     .padding()
                                 }
@@ -146,57 +125,38 @@ struct HomeView: View {
                                         .glassEffect(.regular .interactive())
                                         .padding()
                                         .onTapGesture {
-                                            withAnimation(.bouncy) {
+                                            withAnimation {
                                                 isLocked.toggle()
-                                            }
-                                            
-<<<<<<< HEAD
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-=======
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
->>>>>>> dev
-                                                withAnimation {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                                                     isLocked.toggle()
-                                                }                                            }
+                                                }
+                                            }
                                         }
                 
                                 } else {
                                     // Fallback on earlier versions
-<<<<<<< HEAD
                                     Image(systemName: isLocked ? "lock.fill" : "lock.open.fill")
-=======
-                                    Image(systemName: "lock.fill")
->>>>>>> dev
                                         .frame(width: 40, height: 40)
                                         .background(.secondary)
                                         .clipShape(Circle())
                                         .padding()
-<<<<<<< HEAD
                                         .onTapGesture {
-                                            withAnimation(.bouncy) {
-                                                isLocked.toggle()
-                                            }
-                                            
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                                                 withAnimation {
                                                     isLocked.toggle()
                                                 }                                            }
                                         }
-=======
->>>>>>> dev
+
                                 }
                             }
                             
                         }
                         .frame(width: 200, height: 200)
                         .background(Color.blue)
-<<<<<<< HEAD
                         .shadow(radius: 10, x: 5, y: 5)
                         .clipShape(RoundedRectangle(cornerRadius: 25))
                         .padding()
-=======
-                        .clipShape(RoundedRectangle(cornerRadius: 25))
->>>>>>> dev
+
                     }
                 }
             }
