@@ -9,7 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State var isConected: Bool = false
+    @State var isConected: Bool = true
+    @State var isCalling: Bool = false
+    @State var isLocked: Bool = true
     
     var body: some View {
         NavigationStack {
@@ -61,13 +63,26 @@ struct HomeView: View {
                                 if #available(macOS 26.0, *) {
                                     GlassEffectContainer {
                                         HStack {
-                                            Image(systemName: "phone.down.fill")
-                                                .frame(width: 40, height: 40)
-                                                .glassEffect(.regular .interactive())
+                                            if isCalling {
+                                                Image(systemName: "phone.down.fill")
+                                                    .frame(width: 40, height: 40)
+                                                    .glassEffect(.regular .interactive())
+                                                    .onTapGesture {
+                                                        withAnimation() {
+                                                            isCalling = false
+                                                        }
+                                                    }
+                                                    
+                                            }
                                             
                                             Image(systemName: "phone.fill")
                                                 .frame(width: 40, height: 40)
                                                 .glassEffect(.regular .interactive())
+                                                .onTapGesture {
+                                                    withAnimation() {
+                                                        isCalling = true
+                                                    }
+                                                }
                                             //.offset(x: -10)
                                         }
                                         .padding()
@@ -92,10 +107,21 @@ struct HomeView: View {
                                 Spacer()
                                 
                                 if #available(macOS 26.0, *) {
-                                    Image(systemName: "lock.fill")
+                                    Image(systemName: isLocked ? "lock.fill" : "lock.open.fill")
                                         .frame(width: 40, height: 40)
                                         .glassEffect(.regular .interactive())
                                         .padding()
+                                        .onTapGesture {
+                                            withAnimation(.bouncy) {
+                                                isLocked.toggle()
+                                            }
+                                            
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                                withAnimation {
+                                                    isLocked.toggle()
+                                                }                                            }
+                                        }
+                
                                 } else {
                                     // Fallback on earlier versions
                                     Image(systemName: "lock.fill")
