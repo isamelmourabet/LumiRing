@@ -83,7 +83,6 @@ struct HomeView: View {
                                                         isCalling = true
                                                     }
                                                 }
-                                            //.offset(x: -10)
                                         }
                                         .padding()
                                     }
@@ -91,15 +90,28 @@ struct HomeView: View {
                                 } else {
                                     // Fallback on earlier versions
                                     HStack {
-                                        Image(systemName: "phone.down.fill")
-                                            .frame(width: 40, height: 40)
-                                            .background(.secondary)
-                                            .clipShape(Circle())
+                                        if isCalling {
+                                            Image(systemName: "phone.down.fill")
+                                                .frame(width: 40, height: 40)
+                                                .background(.secondary)
+                                                .clipShape(Circle())
+                                                .onTapGesture {
+                                                    withAnimation() {
+                                                        isCalling = false
+                                                    }
+                                                }
+                                                
+                                        }
                                         
                                         Image(systemName: "phone.fill")
                                             .frame(width: 40, height: 40)
                                             .background(.secondary)
                                             .clipShape(Circle())
+                                            .onTapGesture {
+                                                withAnimation() {
+                                                    isCalling = true
+                                                }
+                                            }
                                     }
                                     .padding()
                                 }
@@ -124,11 +136,21 @@ struct HomeView: View {
                 
                                 } else {
                                     // Fallback on earlier versions
-                                    Image(systemName: "lock.fill")
+                                    Image(systemName: isLocked ? "lock.fill" : "lock.open.fill")
                                         .frame(width: 40, height: 40)
                                         .background(.secondary)
                                         .clipShape(Circle())
                                         .padding()
+                                        .onTapGesture {
+                                            withAnimation(.bouncy) {
+                                                isLocked.toggle()
+                                            }
+                                            
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                                withAnimation {
+                                                    isLocked.toggle()
+                                                }                                            }
+                                        }
                                 }
                             }
                             
