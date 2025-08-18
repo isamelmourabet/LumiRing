@@ -1,5 +1,6 @@
 package com.example.demo;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api")
@@ -8,21 +9,22 @@ public class DoorController {
     private volatile boolean doorRing = false;
 
     @PostMapping("/openDoor")
-    public void ordenarAbrir() {
+    public ResponseEntity<String> ordenarAbrir() {
         doorOpened = true;
+        return ResponseEntity.ok("Puerta abierta satisfactoriamente");
     }
 
     @GetMapping("/openDoor")
-    public synchronized boolean consultarAbrir() {
+    public synchronized ResponseEntity<Boolean> consultarAbrir() {
         if (doorOpened) {
             doorOpened = false; // reset automático
-            return true;
+            return ResponseEntity.ok(true);
         }
-        return false;
+        return ResponseEntity.ok(false);
     }
 
     @PostMapping("/ring")
-    public void pulsarTimbre() {
+    public ResponseEntity<String> pulsarTimbre() {
         doorRing = true;
 
         new Thread(() -> {
@@ -31,15 +33,17 @@ public class DoorController {
             } catch (InterruptedException e) {}
             doorRing = false;
         }).start();
+
+        return ResponseEntity.ok("Timbre activado");
     }
 
     @GetMapping("/ring")
-    public boolean consultarTimbre() {
-        return doorRing;
+    public ResponseEntity<Boolean> consultarTimbre() {
+        return ResponseEntity.ok(doorRing);
     }
 
     @GetMapping("/status")
-    public String statusDoor() {
-        return "Backend OK | Door: " + (doorOpened ? "Open" : "Closed") + " | Ring: " + (doorRing ? "Ringing" : "NO");
+    public ResponseEntity<String> statusDoor() {
+        return ResponseEntity.ok("Backend OK | Door: " + (doorOpened ? "Open" : "Closed") + " | Ring: " + (doorRing ? "Ringing" : "NO"));
     }
 }
