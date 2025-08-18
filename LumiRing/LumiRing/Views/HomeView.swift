@@ -19,18 +19,15 @@ struct HomeView: View {
                 Color.blue.opacity(0.5)
                 
                 VStack {
-                    VStack {
-                        if !isConected {
-                            Text("No se ha encontrado el dispositivo")
-                                .padding()
-                        }
-                        
-                        Button(isConected ? "Desconectar" : "Conectar") {
-                            isConected.toggle()
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .padding()
+                    if !isConected {
+                        Text("No se ha encontrado el dispositivo")
+                            .padding()
                     }
+                    
+                    Button(isConected ? "Desconectar" : "Conectar") {
+                        isConected.toggle()
+                    }
+                    .buttonStyle(.borderedProminent)
                     .padding()
                     
                     
@@ -133,7 +130,7 @@ struct HomeView: View {
                                                 isLocked.toggle()
                                             }
                                             
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                                                 withAnimation {
                                                     isLocked.toggle()
                                                 }                                            }
@@ -162,6 +159,7 @@ struct HomeView: View {
                         }
                         .frame(width: 200, height: 200)
                         .background(Color.blue)
+                        .shadow(radius: 10, x: 5, y: 5)
                         .clipShape(RoundedRectangle(cornerRadius: 25))
                         .padding()
                     }
