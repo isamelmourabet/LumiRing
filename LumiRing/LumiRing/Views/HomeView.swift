@@ -17,17 +17,22 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 Color.blue.opacity(0.5)
+                
                 VStack {
-                    if !isConected {
-                        Text("No se ha encontrado el dispositivo")
-                            .padding()
+                    VStack {
+                        if !isConected {
+                            Text("No se ha encontrado el dispositivo")
+                                .padding()
+                        }
+                        
+                        Button(isConected ? "Desconectar" : "Conectar") {
+                            isConected.toggle()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .padding()
                     }
-                    
-                    Button(isConected ? "Desconectar" : "Conectar") {
-                        isConected.toggle()
-                    }
-                    .buttonStyle(.borderedProminent)
                     .padding()
+                    
                     
                     if isConected {
                         VStack  {
@@ -158,6 +163,7 @@ struct HomeView: View {
                         .frame(width: 200, height: 200)
                         .background(Color.blue)
                         .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .padding()
                     }
                 }
             }
