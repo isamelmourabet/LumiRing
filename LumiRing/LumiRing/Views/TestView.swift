@@ -46,7 +46,7 @@ struct TestView: View {
         }
         .onAppear {
             // 🔄 Polling cada 2s para ver si suena el timbre
-            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { _ in
+            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
                 Task {
                     if let isRinging = try? await service.checkRing(), isRinging {
                         ringAlert = true
