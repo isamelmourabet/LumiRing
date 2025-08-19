@@ -17,6 +17,7 @@ class WebService {
     
     func openDoor() async throws {
         guard let url = URL(string: "http://192.168.1.143:8080/api/openDoor") else {
+
             throw NetworkError.badURL
         }
         
@@ -34,6 +35,7 @@ class WebService {
     
     func checkDoor() async throws -> Bool {
         guard let url = URL(string: "http://192.168.1.143:8080/api/openDoor") else {
+
             throw NetworkError.badURL
         }
         
@@ -53,6 +55,7 @@ class WebService {
     
     func checkRing() async throws -> Bool {
         guard let url = URL(string: "http://192.168.1.143:8080/api/ring") else {
+
             throw NetworkError.badURL
         }
         
@@ -72,6 +75,7 @@ class WebService {
     
     func getStatus() async throws -> String {
         guard let url = URL(string: "http://192.168.1.143:8080/api/status") else {
+
             throw NetworkError.badURL
         }
         
