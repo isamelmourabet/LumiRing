@@ -9,9 +9,14 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State var isConected: Bool = true
+    @State var isConected: Bool = false
     @State var isCalling: Bool = false
     @State var isLocked: Bool = true
+    @State var ringAlert: Bool = false
+    
+    @State var status: String = "Esperando dispositivo..."
+    
+    private let service = WebService()
     
     var body: some View {
         NavigationStack {
@@ -19,13 +24,25 @@ struct HomeView: View {
                 Color.blue.opacity(0.5)
 
                 VStack {
-                    if !isConected {
-                        Text("No se ha encontrado el dispositivo")
-                            .padding()
-                    }
+                    Text(status)
+                        .padding()
                     
                     Button(isConected ? "Desconectar" : "Conectar") {
                         isConected.toggle()
+                        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
+                            Task {
+                                do {
+                                    if isConected {
+                                        try await status = service.getStatus()
+                                    } else {
+                                        status = "Esperando dispositivo..."
+                                    }
+                                    
+                                } catch {
+                                    status = "Error: \(error)"
+                                }
+                            }
+                        }
                     }
                     .buttonStyle(.borderedProminent)
                     .padding()
@@ -127,7 +144,17 @@ struct HomeView: View {
                                         .onTapGesture {
                                             withAnimation {
                                                 isLocked.toggle()
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                                
+                                                Task {
+                                                    do {
+                                                        try await service.openDoor()
+                                                        print("Puerta abierta")
+                                                    } catch {
+                                                        print("Error al abrir la puerta: \(error)")
+                                                    }
+                                                }
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                                                     isLocked.toggle()
                                                 }
                                             }
@@ -144,9 +171,9 @@ struct HomeView: View {
                                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                                                 withAnimation {
                                                     isLocked.toggle()
-                                                }                                            }
+                                                }
+                                            }
                                         }
-
                                 }
                             }
                             
@@ -156,7 +183,18 @@ struct HomeView: View {
                         .shadow(radius: 10, x: 5, y: 5)
                         .clipShape(RoundedRectangle(cornerRadius: 25))
                         .padding()
-
+                        .alert("Tienes un visitante", isPresented: $ringAlert) {
+                            Button("OK", role: .cancel) {}
+                        }
+                        .onAppear {
+                            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { _ in
+                                Task {
+                                    if let isRinging = try? await service.checkRing(), isRinging {
+                                        ringAlert = true
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
