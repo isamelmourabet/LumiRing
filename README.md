@@ -59,6 +59,8 @@ This project has three main components: **Backend (Spring Boot)**, **iOS App (Sw
   cd LumiRing/Lumi-EmbeddedSystem/LumiRing/
   open LumiRing.ino
 
+---
+
 2.	Install dependencies in the Arduino IDE:
 	•	WiFi.h (for ESP32 Wi-Fi connection).
 	•	HTTPClient.h (for REST calls).
