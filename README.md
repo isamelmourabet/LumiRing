@@ -20,19 +20,17 @@ It brings your old intercom to the modern era by adding:
 ## 🛠 How it Works  
 1. **Install** LumiRing next to your existing intercom.  
 2. **Connect** it to your Wi-Fi network.  
-3. **Control** everything from the Lumi app (iOS).  
+3. **Control** everything from the LumiRing app (iOS).  
 
 No need to replace your intercom or do major rewiring.  
 
 ---
 
-## 📱 Lumi App  
-The Lumi iOS app (built with **SwiftUI**) is your control center:  
+## 📱 LumiRing App  
+The LumiRing iOS app (built with **SwiftUI**) is your control center:  
 - Modern and intuitive design.  
 - Instant push notifications.  
 - One-tap door opening.  
-
----
 
 ---
 
@@ -41,10 +39,7 @@ The Lumi iOS app (built with **SwiftUI**) is your control center:
 This project has three main components: **Backend (Spring Boot)**, **iOS App (SwiftUI)**, and **Arduino/ESP32 Firmware**.  
 
 ### 🔙 Backend (Spring Boot)  
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/your-username/lumiring.git
-   cd lumiring/backend
+1. Clone the repository
    
 2.	Build the project with Maven:  
   ```bash
@@ -60,7 +55,7 @@ This project has three main components: **Backend (Spring Boot)**, **iOS App (Sw
 ### ⚡ Arduino / ESP32 Firmware
 1.	Open the Arduino project:
   ```bash
-  cd Lumi-EmbeddedSystem/LumiRing/
+  cd LumiRing/Lumi-EmbeddedSystem/LumiRing/
   open LumiRing.ino
 
 2.	Install dependencies in the Arduino IDE:
