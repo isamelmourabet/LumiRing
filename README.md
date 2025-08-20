@@ -65,12 +65,12 @@ This project has three main components: **Backend (Spring Boot)**, **iOS App (Sw
 	•	HTTPClient.h (for REST calls).
 	•	ArduinoJson (for JSON parsing).
 
-3. Select the board:
+4. Select the board:
 	•	Tools > Board > ESP32 Dev Module.
 
-4. Connect your ESP32 via USB.
+5. Connect your ESP32 via USB.
 
-5. Upload the firmware (→ button in Arduino IDE).
+6. Upload the firmware (→ button in Arduino IDE).
 	
 ---
 
