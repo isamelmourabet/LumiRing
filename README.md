@@ -41,37 +41,37 @@ This project has three main components: **Backend (Spring Boot)**, **iOS App (Sw
 ### 🔙 Backend (Spring Boot)  
 1. Clone the repository
    
-2.	Build the project with Maven:
-   ```bash
+2. Build the project with Maven:
+	```bash
 	./mvnw clean install
-	```
-4.	Run the server:
+	````
+3. Run the server:
 	```bash
 	./mvnw spring-boot:run
-	```
+	````
 
-4.	The API will be available at:
+4. The API will be available at:
   http://localhost:8080
 
 ### ⚡ Arduino / ESP32 Firmware
-1.	Open the Arduino project:
-  ```bash
-  cd LumiRing/Lumi-EmbeddedSystem/LumiRing/
-  open LumiRing.ino
-
----
-
-2.	Install dependencies in the Arduino IDE:
+1. Open the Arduino project:
+	```bash
+	cd LumiRing/Lumi-EmbeddedSystem/LumiRing/
+	open LumiRing.ino
+	````
+ 
+2. Install dependencies in the Arduino IDE:
 	•	WiFi.h (for ESP32 Wi-Fi connection).
 	•	HTTPClient.h (for REST calls).
 	•	ArduinoJson (for JSON parsing).
 
-3.	Select the board:
+3. Select the board:
 	•	Tools > Board > ESP32 Dev Module.
 
-4.	Connect your ESP32 via USB.
+4. Connect your ESP32 via USB.
 
-5.	Upload the firmware (→ button in Arduino IDE).
+5. Upload the firmware (→ button in Arduino IDE).
+	
 ---
 
 ## 🚧 Roadmap  
@@ -80,7 +80,6 @@ This project has three main components: **Backend (Spring Boot)**, **iOS App (Sw
 - [ ] Android support  
 - [ ] Multi-user access  
  
-
 ---
 
 ## 🤝 Contributing  
