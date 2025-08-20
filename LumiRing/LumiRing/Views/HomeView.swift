@@ -14,7 +14,7 @@ struct HomeView: View {
     @State var isLocked: Bool = true
     @State var ringAlert: Bool = false
     
-    @State var status: String = "Esperando dispositivo..."
+    @State var status: String = "Esperando para conectar dispositivo..."
     
     private let service = WebService()
     
@@ -35,7 +35,7 @@ struct HomeView: View {
                                     if isConected {
                                         try await status = service.getStatus()
                                     } else {
-                                        status = "Esperando dispositivo..."
+                                        status = "Esperando para conectar dispositivo..."
                                     }
                                     
                                 } catch {
@@ -57,7 +57,7 @@ struct HomeView: View {
                                 
                                 Spacer()
                                 
-                                if #available(macOS 26.0, *) {
+                                if #available(iOS 26.0, *) {
                                     Image(systemName: "ellipsis")
                                         .frame(width: 30, height: 30)
                                         .glassEffect(.regular .interactive())
@@ -78,7 +78,7 @@ struct HomeView: View {
                             Spacer()
                             
                             HStack {
-                                if #available(macOS 26.0, *) {
+                                if #available(iOS 26.0, *) {
                                     GlassEffectContainer {
                                         HStack {
                                             if isCalling {
@@ -136,7 +136,7 @@ struct HomeView: View {
                                 
                                 Spacer()
                                 
-                                if #available(macOS 26.0, *) {
+                                if #available(iOS 26.0, *) {
                                     Image(systemName: isLocked ? "lock.fill" : "lock.open.fill")
                                         .frame(width: 40, height: 40)
                                         .glassEffect(.regular .interactive())
@@ -154,7 +154,7 @@ struct HomeView: View {
                                                     }
                                                 }
                                                 
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                                                     isLocked.toggle()
                                                 }
                                             }
@@ -168,7 +168,18 @@ struct HomeView: View {
                                         .clipShape(Circle())
                                         .padding()
                                         .onTapGesture {
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                                            isLocked.toggle()
+                                            
+                                            Task {
+                                                do {
+                                                    try await service.openDoor()
+                                                    print("Puerta abierta")
+                                                } catch {
+                                                    print("Error al abrir la puerta: \(error)")
+                                                }
+                                            }
+                                            
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.5) {
                                                 withAnimation {
                                                     isLocked.toggle()
                                                 }
