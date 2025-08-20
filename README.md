@@ -41,13 +41,14 @@ This project has three main components: **Backend (Spring Boot)**, **iOS App (Sw
 ### 🔙 Backend (Spring Boot)  
 1. Clone the repository
    
-2.	Build the project with Maven:  
-  ```bash
-  ./mvnw clean install
-
-3.	Run the server:
-  ```bash
-  ./mvnw spring-boot:run
+2.	Build the project with Maven:
+   ```bash
+	./mvnw clean install
+	```
+4.	Run the server:
+	```bash
+	./mvnw spring-boot:run
+	```
 
 4.	The API will be available at:
   http://localhost:8080
