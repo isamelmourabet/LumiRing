@@ -30,7 +30,18 @@ No need to replace your intercom or do major rewiring.
 The LumiRing iOS app (built with **SwiftUI**) is your control center:  
 - Modern and intuitive design.  
 - Instant push notifications.  
-- One-tap door opening.  
+- One-tap door opening.
+
+Light mode
+<img width="338" height="689" alt="Captura de pantalla 20 08 2025 a 20 23 36 p  m" src="https://github.com/user-attachments/assets/4b41cc4a-1862-4c3e-90e7-7a6b0dfe52ac" />
+<img width="334" height="682" alt="Captura de pantalla 2025-08-20 a las 20 25 56" src="https://github.com/user-attachments/assets/71928aa3-f4f0-4001-9aaf-60cc9df839d8" />
+<img width="334" height="682" alt="Captura de pantalla 2025-08-20 a las 20 26 02" src="https://github.com/user-attachments/assets/42278107-a99d-44b8-9e27-d6f2fa92465e" />
+
+Dark mode
+<img width="334" height="682" alt="Captura de pantalla 2025-08-20 a las 20 24 33" src="https://github.com/user-attachments/assets/8daace40-5512-420d-bd2d-da610228e47c" />
+<img width="334" height="682" alt="Captura de pantalla 2025-08-20 a las 20 25 15" src="https://github.com/user-attachments/assets/abdffe5a-cd96-4448-b68c-40c2c214b55c" />
+<img width="334" height="682" alt="Captura de pantalla 2025-08-20 a las 20 25 25" src="https://github.com/user-attachments/assets/90a610f2-02ae-4cb2-a520-3bbae04e0e6e" />
+
 
 ---
 
