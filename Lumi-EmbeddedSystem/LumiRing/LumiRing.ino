@@ -2,12 +2,12 @@
 #include <HTTPClient.h>
 
 // ===== CONFIG WiFi =====
-const char* ssid = "DIGIFIBRA-k3z2";
-const char* password = "Mm916083616";
+const char* ssid = "YOUR_NETWORKS_NAME";
+const char* password = "PASSWORD";
 
 // ===== CONFIG BACKEND =====
-const char* backendURLTimbre = "http://192.168.1.143:8080/api/ring";
-const char* backendURLAbrir = "http://192.168.1.143:8080/api/openDoor";
+const char* backendURLTimbre = "http://YOUR_IP:8080/api/ring";
+const char* backendURLAbrir = "http://YOUR_IP:8080/api/openDoor";
 
 // ===== PINES =====
 const int pinRelePuerta = 26;
